@@ -6,7 +6,7 @@ RUN mkdir /deployments/
 WORKDIR /deployments/
 
 CMD ["java", \
- "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", \
+ "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap","-XX:MaxRAMFraction=1","-XshowSettings:vm", \
  "-XX:+CrashOnOutOfMemoryError","-XX:+HeapDumpOnOutOfMemoryError", "-XX:HeapDumpPath=/tmp", \
  "-XX:MaxHeapFreeRatio=40","-XX:MinHeapFreeRatio=20", \
  "-Djava.security.egd=file:/dev/./urandom", \
