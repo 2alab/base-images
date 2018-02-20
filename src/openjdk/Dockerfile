@@ -4,9 +4,11 @@ RUN mkdir /deployments/
 
 WORKDIR /deployments/
 
+# ,"-XX:MaxRAMFraction=1" disables
+
 CMD ["java", \
- "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap","-XX:MaxRAMFraction=1","-XshowSettings:vm", \
- "-XX:+CrashOnOutOfMemoryError","-XX:+HeapDumpOnOutOfMemoryError", "-XX:HeapDumpPath=/tmp", \
+ "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap","-XshowSettings:vm", \
+ "-XX:+ExitOnOutOfMemoryError","-XX:+HeapDumpOnOutOfMemoryError", "-XX:HeapDumpPath=/tmp","-XX:ErrorFile=/tmp/jdk.error", \
  "-XX:MaxHeapFreeRatio=40","-XX:MinHeapFreeRatio=20", \
  "-Djava.security.egd=file:/dev/./urandom", \
  "-Duser.timezone=Europe/Moscow", \
