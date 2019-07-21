@@ -21,3 +21,10 @@ openjdk-9-springboot:
 	cat Dockerfile >> ../../generated/9-springboot/Dockerfile
 	cd ../../generated/9-springboot/
 	docker build $(BUILD_ARGS) -t $(NAME)/openjdk-9-springboot:$(VERSION) .
+
+
+mongo4-tools:
+	cd src/mongo-tools/
+	cat 4/Dockerfile > ../../generated/mongo4-tools/Dockerfile
+	cd ../../generated/mongo4-tools/
+	docker build $(BUILD_ARGS) -t $(NAME)/mongo4-tools:$(VERSION) .
