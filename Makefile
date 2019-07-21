@@ -4,7 +4,16 @@ BUILD_ARGS := $(BUILD_ARGS)
 .ONESHELL:
 
 
-all: openjdk-8-springboot openjdk-9-springboot
+all: mad-jdk11 openjdk-8-springboot openjdk-9-springboot openjdk-11-springboot
+
+
+
+mad-jdk11:
+	cd src/mad/
+	cat jdk11/Dockerfile > ../../generated/mad-jdk11/Dockerfile
+	cat Dockerfile >> ../../generated/mad-jdk11/Dockerfile
+	cd ../../generated/mad-jdk11/
+	docker build $(BUILD_ARGS) -t $(NAME)/mad-jdk11:$(VERSION) .
 
 
 openjdk-8-springboot:
@@ -21,6 +30,15 @@ openjdk-9-springboot:
 	cat Dockerfile >> ../../generated/9-springboot/Dockerfile
 	cd ../../generated/9-springboot/
 	docker build $(BUILD_ARGS) -t $(NAME)/openjdk-9-springboot:$(VERSION) .
+
+
+
+openjdk-11-springboot:
+	cd src/openjdk/
+	cat 11-springboot/Dockerfile > ../../generated/11-springboot/Dockerfile
+	cat Dockerfile-cgroups-support >> ../../generated/11-springboot/Dockerfile
+	cd ../../generated/11-springboot/
+	docker build $(BUILD_ARGS) -t $(NAME)/openjdk-11-springboot:$(VERSION) .
 
 
 mongo4-tools:
