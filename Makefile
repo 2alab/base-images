@@ -4,7 +4,7 @@ BUILD_ARGS := $(BUILD_ARGS)
 .ONESHELL:
 
 
-all: mad-jdk11 openjdk-8-springboot openjdk-9-springboot openjdk-11-springboot
+all: mad-jdk11 openjdk-8-springboot openjdk-9-springboot openjdk-11-springboot ansible
 
 
 
@@ -46,3 +46,10 @@ mongo4-tools:
 	cat 4/Dockerfile > ../../generated/mongo4-tools/Dockerfile
 	cd ../../generated/mongo4-tools/
 	docker build $(BUILD_ARGS) -t $(NAME)/mongo4-tools:$(VERSION) .
+
+
+ansible:
+	cd src/ansible/
+	cat Dockerfile > ../../generated/ansible/Dockerfile
+	cd ../../generated/ansible/
+	docker build $(BUILD_ARGS) -t $(NAME)/ansible:$(VERSION) .
