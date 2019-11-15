@@ -53,3 +53,10 @@ ansible:
 	cat Dockerfile > ../../generated/ansible/Dockerfile
 	cd ../../generated/ansible/
 	docker build $(BUILD_ARGS) -t $(NAME)/ansible:$(VERSION) .
+
+
+yandexcloud-yc:
+	cd src/yandexcloud-yc/
+	cat Dockerfile > ../../generated/yandexcloud-yc/Dockerfile
+	cd ../../generated/yandexcloud-yc/
+	docker build $(BUILD_ARGS) -t $(NAME)/yandexcloud-yc:$(VERSION) .

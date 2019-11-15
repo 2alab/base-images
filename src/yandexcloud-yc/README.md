@@ -1,0 +1,1 @@
+https://cloud.yandex.ru/docs/cli/operations/install-cli
