@@ -4,8 +4,15 @@ BUILD_ARGS := $(BUILD_ARGS)
 .ONESHELL:
 
 
-all: mad-jdk11 openjdk-8-springboot openjdk-9-springboot openjdk-11-springboot ansible
+all: mad-jdk8 mad-jdk11 openjdk-8-springboot openjdk-9-springboot openjdk-11-springboot ansible
 
+
+mad-jdk8:
+	cd src/mad/
+	cat jdk8/Dockerfile > ../../generated/mad-jdk8/Dockerfile
+	cat Dockerfile >> ../../generated/mad-jdk8/Dockerfile
+	cd ../../generated/mad-jdk8/
+	docker build $(BUILD_ARGS) -t $(NAME)/mad-jdk8:$(VERSION) .
 
 
 mad-jdk11:
@@ -60,3 +67,9 @@ yandexcloud-yc:
 	cat Dockerfile > ../../generated/yandexcloud-yc/Dockerfile
 	cd ../../generated/yandexcloud-yc/
 	docker build $(BUILD_ARGS) -t $(NAME)/yandexcloud-yc:$(VERSION) .
+
+isign:
+	cd src/isign/
+	cat Dockerfile > ../../generated/isign/Dockerfile
+	cd ../../generated/isign/
+	docker build $(BUILD_ARGS) -t $(NAME)/isign:$(VERSION) .
